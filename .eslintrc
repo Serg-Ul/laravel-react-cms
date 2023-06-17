@@ -13,6 +13,7 @@
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
+    "react/display-name": "off",
     "no-use-before-define": "off",
     "no-shadow": "off",
     "no-console": "warn",
@@ -29,8 +30,7 @@
       {
         "allowExpressions": true
       }
-    ],
-    "max-len": ["warn", { "code": 110 }]
+    ]
   },
   "settings": {
     "import/resolver": {
