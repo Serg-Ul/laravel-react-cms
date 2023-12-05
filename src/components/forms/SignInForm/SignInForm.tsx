@@ -1,11 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { defaultValues, validationSchema } from './SignInForm.validation';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { TSignInFormSubmitHandlerProps } from './SignInForm.types';
 import classes from './SignInForm.module.scss';
+import useAppDispatch from '@/hooks/redux/useAppDispatch';
+import useAppSelector from '@/hooks/redux/useAppSelector';
+import { TUserSignInValues } from '@/types/users.types';
+import { resetState, signInUserThunk } from '@/store';
+import { useSnackbar } from 'notistack';
+import { useDebounce } from 'usehooks-ts';
+import { useNavigate } from 'react-router';
+import { AdminRoutes } from '@/config/routes';
 
 const SignInForm: FC = () => {
+  const { isSuccess, error, isLoading } = useAppSelector(state => state.users);
+  const dispatch = useAppDispatch();
+  // const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+  const debouncedSuccess = useDebounce(isSuccess, 500);
+  const debouncedError = useDebounce(error, 500);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -16,15 +31,23 @@ const SignInForm: FC = () => {
     mode: 'onBlur',
   });
 
-  const isSubmitButtonDisabled = !isValid || !isDirty || isSubmitting;
+  const isSubmitButtonDisabled = !isValid || !isDirty || isLoading;
 
-  const handleFormSubmit: SubmitHandler<TSignInFormSubmitHandlerProps> = data => {
-    const { email, password } = data;
+  useEffect(() => {
+    if (debouncedError) {
+      enqueueSnackbar(debouncedError.message);
+    }
+  }, [debouncedError, enqueueSnackbar]);
 
-    console.log(data);
-    console.log(errors);
-    console.log(dirtyFields);
-    console.log(isDirty);
+  useEffect(() => {
+    if (debouncedSuccess) {
+      dispatch(resetState());
+      navigate(`/${AdminRoutes.admin}`);
+    }
+  }, [dispatch, debouncedSuccess, navigate]);
+
+  const handleFormSubmit: SubmitHandler<TUserSignInValues> = data => {
+    dispatch(signInUserThunk(data));
   };
 
   return (

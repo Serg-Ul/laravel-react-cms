@@ -14,11 +14,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "typeRoots": [
+      "node_modules/@types",
+      "src/types"
+    ],
+    "baseUrl": ".",
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "typeRoots": [
-    "node_modules/@types",
-  ],
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -10,7 +10,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier", "import"],
   "rules": {
     "arrow-body-style": ["error", "as-needed"],
     "react/display-name": "off",
@@ -34,7 +34,21 @@
   },
   "settings": {
     "import/resolver": {
-      "typescript": "tsconfig.json"
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "tsconfig.json"
+      },
+      "node": {
+        "extensions": [".ts", ".tsx"]
+      },
+      "alias": {
+        "map": [
+          ["@", "src"]
+        ]
+      }
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     }
   }
 }
