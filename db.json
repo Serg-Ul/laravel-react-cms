@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test1@gmail.com",
+      "password": 5876005514249391,
+      "id": 1
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test2@gmail.com",
+      "password": 5876005514249391,
+      "id": 2
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test3@gmail.com",
+      "password": 5876005514249391,
+      "id": 3
+    },
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test4@gmail.com",
+      "password": 5876005514249391,
+      "id": 4
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "1233",
+      "description": "1223",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "23",
+      "description": "23",
+      "userId": 1
+    },
+    {
+      "title": "3",
+      "description": "3",
+      "userId": 1,
+      "id": 3
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+.header-admin {
+  background-color: #005999;
+
+  &-menu {
+    padding: 20px 0;
+    display: flex;
+
+    &-item {
+      color: #ffffff;
+
+      &.active {
+        color: green;
+      }
+
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.users {
+  padding-top: 30px;
+
+  &-list {
+
+    &-item {
+      display: flex;
+      align-items: center;
+
+      &-name {
+        font-size: 18px;
+        margin-left: 25px;
+      }
+    }
+  }
+}
